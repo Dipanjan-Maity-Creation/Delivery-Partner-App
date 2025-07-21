@@ -1,74 +1,139 @@
-# Delivery-Partner-App
-The Yaammy Delivery Partner App is a feature-rich, mobile solution built using Flutter and Firebase, designed specifically for individuals looking to earn by delivering food, groceries, and more. The app empowers partners with tools to manage their profile, upload verification documents, and track their orders.
+🚴‍♂️ Yaammy – Delivery Partner App
+The Yaammy Delivery Partner App is a powerful Flutter-based mobile application integrated with Firebase, crafted to simplify the daily operations of food and grocery delivery personnel. It provides seamless onboarding, document verification, and profile management, enabling individuals to join and thrive as delivery agents.
 
+📌 Overview
+This application streamlines the delivery partner journey with intuitive workflows, a responsive UI, and robust backend integration. It allows agents to securely sign up, upload required documents, track verification status, manage personal details, and contact support — all from a single mobile interface.
 
-🎯 Purpose
-To provide delivery agents with a seamless onboarding and management experience, enabling them to:
+🚀 Key Features
+🔐 Secure Registration & Onboarding
+Firebase Authentication via phone number
 
-Register quickly and securely
+Step-by-step onboarding with real-time form validation
 
-Upload necessary KYC and vehicle documents
+📑 KYC Document Upload
+Upload Aadhaar, PAN, Passbook, License, RC, and Insurance
 
-View their delivery status and history
+Replace, remove, and validate documents easily
 
-Manage personal details and availability
+Ensures all documents are uploaded before proceeding
 
-Get support and stay updated on policies
+👤 Profile Management
+View and update personal and vehicle details
 
-📦 Core Features
-✅ Document Verification
-Upload Aadhaar, PAN, Passbook, License, RC, and Insurance images
+Display verification status with dynamic UI changes
 
-Replace or remove uploads with a clean UI
-
-Automatic check to ensure all documents are submitted before moving forward
-
-👤 Partner Profile Management
-View profile, vehicle info, and verification status
-
-Update personal details (Edit Profile functionality)
-
-Secure logout
+Secure logout functionality
 
 📆 Leave Requests & Support
-Submit leave requests through the app
+Submit leave requests via the app
 
-Contact support easily via in-app options
+Contact support by call or email (using url_launcher)
 
-Access Privacy Policy and Terms & Conditions
+View in-app Privacy Policy and Terms & Conditions
 
-🔄 Dynamic Workflow
-After document upload, navigates to Verification Pending
+🔁 Dynamic Workflow
+Auto-navigation from upload to “Verification Pending”
 
-Auto-redirects to dashboard after approval timeout
+On admin approval, redirects to dashboard
 
-Future-ready for live order tracking and route assignment
+Built for future integration with live delivery tracking
 
 🧱 Tech Stack
-Frontend: Flutter (Dart)
+Layer	Technology
+Frontend	Flutter (Dart), Material UI
+Backend	Firebase Auth, Firestore, Storage
+Media Upload	image_picker, firebase_storage
+Navigation	MaterialPageRoute, pushReplacement
+Utils	Google Fonts, Custom Widgets
 
-Backend: Firebase (Auth, Firestore, Storage – optional)
+🗂️ Directory Structure
+csharp
+Copy
+Edit
+lib/
+├── main.dart                     # App entry point
+├── login.dart                    # Phone authentication
+├── upload_documents.dart         # KYC document uploads
+├── verification_pending.dart     # Pending status screen
+├── dashboard.dart                # Partner overview
+├── edit_profile.dart             # Update personal details
+├── leave_request.dart            # Leave submission form
+├── contact_support.dart          # Contact options
+├── policy_pages.dart             # Legal documents
+└── utils/                        # Shared constants, error messages
+🔐 Firestore Rules (Example)
+js
+Copy
+Edit
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /DeliveryPartners/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
+🛠️ Getting Started
+✅ Prerequisites
+Flutter SDK (latest stable version)
 
-Media: image_picker for document uploads
+Firebase Project with:
 
-Navigation: MaterialRoute and pushReplacement for flows
+Authentication (Phone)
 
-🛠 Installation
+Firestore Database
+
+Cloud Storage
+
+⚙️ Installation
 bash
 Copy
 Edit
 git clone https://github.com/your-username/yaammy_delivery_partner.git
 cd yaammy_delivery_partner
 flutter pub get
+Add your Firebase configuration files:
+
+google-services.json for Android (android/app/)
+
+GoogleService-Info.plist for iOS (ios/Runner/)
+
+▶️ Run the App
+bash
+Copy
+Edit
 flutter run
-Add your google-services.json file and configure Firebase settings before running.
+🌟 Future Enhancements
+📍 Live location tracking and delivery route assignment
 
-💡 Future Enhancements
-Live delivery tracking and task notifications
+💸 Earnings dashboard with transaction history
 
-Integrated payment dashboard for earnings and tips
+⭐ Ratings, reviews, and performance analytics
 
-Ratings, reviews, and performance stats
+🔔 Push notifications for delivery updates via FCM
 
-Admin approval system for documents
+🧾 Admin approval panel for document validation
 
+🤝 Contributing
+We welcome contributions to improve the project!
+
+bash
+Copy
+Edit
+# Fork the repository
+git checkout -b feature/your-feature-name
+
+# Make changes and commit
+git commit -m "Add your feature"
+
+# Push to your branch
+git push origin feature/your-feature-name
+
+# Open a Pull Request 🚀
+📄 License
+This project is licensed under the MIT License.
+See the LICENSE file for more information.
+
+📬 Contact
+Email: yaammyfood@gmail.com
+Phone: +91 84360 89071
